@@ -1,15 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-    let Winery = sequelize.define(
+    const Winery = sequelize.define(
       "Winery",
       {
-        id: {
-          type: DataTypes.Int,
-          allowNull: false,
-          validate: {
-            len: [1],
-          },
-        },
-  
         winery_name: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -22,5 +14,5 @@ module.exports = function (sequelize, DataTypes) {
         freezeTableName: true,
       }
     );
-    return Review;
+    return Winery;
   };

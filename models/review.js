@@ -1,15 +1,7 @@
 module.exports = function (sequelize, DataTypes) {
-    let Review = sequelize.define(
+    const Review = sequelize.define(
       "Review",
       {
-        id: {
-          type: DataTypes.Int,
-          allowNull: false,
-          validate: {
-            len: [1],
-          },
-        },
-  
         title: {
           type: DataTypes.STRING,
           allowNull: false,
@@ -24,14 +16,23 @@ module.exports = function (sequelize, DataTypes) {
             len: [1],
           },
         },
+        rating: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          validate: {
+            isInt: true,
+            isIn: [[1, 2, 3, 4, 5]],
+            len: [1],
+          },
+        },
       },
       {
         freezeTableName: true,
       }
     );
   
-    Post.associate = function (models) {
-      Post.belongsTo(models.user, {
+    Review.associate = function (models) {
+      Review.belongsTo(models.User, {
         foreignKey: {
           allowNull: false,
         },
