@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-    let Winery = sequelize.define(
-      "Winery",
+    let Review = sequelize.define(
+      "Review",
       {
         id: {
           type: DataTypes.Int,
@@ -10,8 +10,15 @@ module.exports = function (sequelize, DataTypes) {
           },
         },
   
-        winery_name: {
+        title: {
           type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            len: [1],
+          },
+        },
+        body: {
+          type: DataTypes.TEXT,
           allowNull: false,
           validate: {
             len: [1],
@@ -22,5 +29,13 @@ module.exports = function (sequelize, DataTypes) {
         freezeTableName: true,
       }
     );
+  
+    Post.associate = function (models) {
+      Post.belongsTo(models.user, {
+        foreignKey: {
+          allowNull: false,
+        },
+      });
+    };
     return Review;
   };

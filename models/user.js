@@ -1,16 +1,15 @@
 module.exports = function (sequelize, DataTypes) {
-    let Winery = sequelize.define(
-      "Winery",
+    let User = sequelize.define(
+      "User",
       {
-        id: {
-          type: DataTypes.Int,
+        user_name: {
+          type: DataTypes.STRING,
           allowNull: false,
           validate: {
             len: [1],
           },
         },
-  
-        winery_name: {
+        email: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
@@ -22,5 +21,11 @@ module.exports = function (sequelize, DataTypes) {
         freezeTableName: true,
       }
     );
-    return Review;
+  
+    User.associate = function (models) {
+      User.hasMany(models.Review, {
+        onDelete: "cascade",
+      });
+    };
+    return User;
   };

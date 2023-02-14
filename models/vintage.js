@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
-    let Winery = sequelize.define(
-      "Winery",
+    let Vintage = sequelize.define(
+      "Vintage",
       {
         id: {
           type: DataTypes.Int,
@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
           },
         },
   
-        winery_name: {
+        vintage: {
           type: DataTypes.STRING,
           allowNull: false,
           validate: {
@@ -22,5 +22,5 @@ module.exports = function (sequelize, DataTypes) {
         freezeTableName: true,
       }
     );
-    return Review;
+    return Vintage;
   };
